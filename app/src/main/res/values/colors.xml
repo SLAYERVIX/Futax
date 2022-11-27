@@ -8,7 +8,10 @@
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
 
+    <color name="grey">#a6a7ac</color>
+
     <!-- Gradient -->
-    <color name="gradient_start">#0099F7</color>
-    <color name="gradient_end">#F11712</color>
+    <color name="gradient_start">#0F2027</color>
+    <color name="gradient_center">#203A43</color>
+    <color name="gradient_end">#2C5364</color>
 </resources>

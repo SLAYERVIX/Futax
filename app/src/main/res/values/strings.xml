@@ -2,4 +2,6 @@
     <string name="app_name">Futax</string>
     <string name="calculate">calculate</string>
     <string name="hint">value</string>
+    <string name="earning">Earning</string>
+    <string name="app_title">FUTAX</string>
 </resources>
