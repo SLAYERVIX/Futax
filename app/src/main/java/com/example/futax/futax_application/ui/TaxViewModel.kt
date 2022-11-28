@@ -1,47 +1,36 @@
 package com.example.futax.futax_application.ui
 
-import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.futax.futax_application.domain.Log
 import com.example.futax.futax_application.domain.repository.LocalRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
 class TaxViewModel @Inject constructor(private val repository: LocalRepository) : ViewModel() {
-    val earning: MutableLiveData<Int> by lazy {
-        MutableLiveData<Int>().apply {
-            postValue(0)
-        }
-    }
+    private val _earning: MutableStateFlow<Int> = MutableStateFlow(0)
+    val earning: MutableStateFlow<Int> = _earning
 
-    val sellingPrice: MutableLiveData<Int> by lazy {
-        MutableLiveData<Int>().apply {
-            postValue(0)
-        }
-    }
-
-    private val logsList: MutableLiveData<List<Log>> by lazy {
-        MutableLiveData<List<Log>>()
-    }
+    private val _sellingPrice: MutableStateFlow<Int> = MutableStateFlow(0)
+    val sellingPrice: MutableStateFlow<Int> = _sellingPrice
 
     init {
         getLogs()
     }
 
-    fun calculateEarning() {
-        val value: Int = sellingPrice.value!!.toInt()
-        earning.value = value - (value * .05).toInt()
+    suspend fun calculateEarning() {
+        val selling: Int = sellingPrice.value
+        val earned: Int = selling - (selling * .05).toInt()
+        earning.emit(earned)
+        insertLog(Log(0,selling,earned))
     }
 
-    private fun getLogs() {
-        viewModelScope.launch(Dispatchers.IO) {
-            logsList.postValue(repository.getAllLogs())
-        }
-    }
+    private fun getLogs(): Flow<List<Log>> = repository.getAllLogs()
 
     private fun insertLog(log: Log) = viewModelScope.launch(Dispatchers.IO) {
         repository.insertLog(log)

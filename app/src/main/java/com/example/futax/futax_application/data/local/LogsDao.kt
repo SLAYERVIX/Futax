@@ -1,16 +1,16 @@
 package com.example.futax.futax_application.data.local
 
-import androidx.lifecycle.MutableLiveData
 import androidx.room.Dao
 import androidx.room.Delete
 import androidx.room.Insert
 import androidx.room.Query
 import com.example.futax.futax_application.domain.Log
+import kotlinx.coroutines.flow.Flow
 
 @Dao
 interface LogsDao {
     @Query("SELECT * FROM logs_table")
-    fun getAllLogs(): List<Log>
+    fun getAllLogs(): Flow<List<Log>>
 
     @Insert
     suspend fun insertLog(log: Log)

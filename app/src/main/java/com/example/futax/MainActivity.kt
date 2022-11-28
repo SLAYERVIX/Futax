@@ -1,12 +1,14 @@
 package com.example.futax
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.activity.viewModels
+import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
+import androidx.lifecycle.lifecycleScope
 import com.example.futax.databinding.ActivityMainBinding
 import com.example.futax.futax_application.ui.TaxViewModel
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
 class MainActivity : AppCompatActivity() {
@@ -19,8 +21,16 @@ class MainActivity : AppCompatActivity() {
         binding.viewModel = viewModel
 
         binding.btnCalculate.setOnClickListener {
-            viewModel.sellingPrice.value = binding.tietValue.text.toString().toInt()
-            viewModel.calculateEarning()
+            lifecycleScope.launch {
+                val sellingPrice : Int = binding.tietValue.text.toString().toInt()
+                viewModel.sellingPrice.emit(sellingPrice)
+
+                viewModel.calculateEarning()
+
+                viewModel.earning.collect {
+                    binding.tvEarning.text = it.toString()
+                }
+            }
         }
     }
 }

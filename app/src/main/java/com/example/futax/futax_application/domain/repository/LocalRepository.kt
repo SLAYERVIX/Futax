@@ -1,10 +1,10 @@
 package com.example.futax.futax_application.domain.repository
 
-import androidx.lifecycle.MutableLiveData
 import com.example.futax.futax_application.domain.Log
+import kotlinx.coroutines.flow.Flow
 
 interface LocalRepository {
-    fun getAllLogs() : List<Log>
+    fun getAllLogs() : Flow<List<Log>>
     suspend fun insertLog(log: Log)
     suspend fun deleteLog(log: Log)
     suspend fun clearLogs()
