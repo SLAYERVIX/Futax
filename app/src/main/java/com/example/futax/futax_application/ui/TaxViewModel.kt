@@ -13,21 +13,42 @@ import javax.inject.Inject
 
 @HiltViewModel
 class TaxViewModel @Inject constructor(private val repository: LocalRepository) : ViewModel() {
-    private val _earning: MutableStateFlow<Int> = MutableStateFlow(0)
-    val earning: MutableStateFlow<Int> = _earning
 
-    private val _sellingPrice: MutableStateFlow<Int> = MutableStateFlow(0)
-    val sellingPrice: MutableStateFlow<Int> = _sellingPrice
+    val sellingPrice: MutableStateFlow<Int> = MutableStateFlow(0)
+    val earning: MutableStateFlow<Int> = MutableStateFlow(0)
+    val taxes: MutableStateFlow<Int> = MutableStateFlow(0)
+    val total: MutableStateFlow<Int> = MutableStateFlow(0)
+    val quantity: MutableStateFlow<Int> = MutableStateFlow(1)
+
 
     init {
         getLogs()
     }
 
-    suspend fun calculateEarning() {
-        val selling: Int = sellingPrice.value
-        val earned: Int = selling - (selling * .05).toInt()
-        earning.emit(earned)
-        insertLog(Log(0,selling,earned))
+    private suspend fun calculateTotal() {
+        total.emit(
+            sellingPrice.value * quantity.value
+        )
+    }
+
+    private suspend fun calculateEarning() {
+        earning.emit(
+            total.value - (total.value * .05).toInt()
+        )
+    }
+
+    private suspend fun calculateTaxes() {
+        taxes.emit(
+            total.value - earning.value
+        )
+    }
+
+    suspend fun calculateBtnOnClick() {
+        calculateTotal()
+        calculateEarning()
+        calculateTaxes()
+
+        insertLog(Log(0, sellingPrice.value, earning.value))
     }
 
     private fun getLogs(): Flow<List<Log>> = repository.getAllLogs()

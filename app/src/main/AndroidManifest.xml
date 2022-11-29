@@ -14,7 +14,7 @@
         android:theme="@style/Theme.Futax"
         tools:targetApi="33">
         <activity
-            android:name=".MainActivity"
+            android:name=".futax_application.ui.MainActivity"
             android:exported="true"
             android:windowSoftInputMode="adjustResize">
             <intent-filter>

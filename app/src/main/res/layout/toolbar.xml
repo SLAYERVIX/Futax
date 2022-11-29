@@ -7,13 +7,11 @@
     <com.google.android.material.appbar.AppBarLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/gradient_center"
-        >
+        android:background="@color/primaryColor">
 
         <com.google.android.material.appbar.MaterialToolbar
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            app:title="@string/app_title"
-            />
+            app:title="@string/app_title" />
     </com.google.android.material.appbar.AppBarLayout>
 </FrameLayout>

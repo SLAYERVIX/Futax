@@ -4,4 +4,10 @@
     <string name="hint">value</string>
     <string name="earning">Earning</string>
     <string name="app_title">FUTAX</string>
+    <string name="selling_price">Selling price</string>
+    <string name="taxes">Taxes</string>
+    <string name="quantity">Qty</string>
+    <string name="home">Home</string>
+    <string name="simple">Simple</string>
+    <string name="complex">Complex</string>
 </resources>
