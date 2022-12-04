@@ -1,6 +1,6 @@
 package com.example.futax.futax_application.domain.repository
 
-import com.example.futax.futax_application.domain.Log
+import com.example.futax.futax_application.data.local.models.Log
 import kotlinx.coroutines.flow.Flow
 
 interface LocalRepository {

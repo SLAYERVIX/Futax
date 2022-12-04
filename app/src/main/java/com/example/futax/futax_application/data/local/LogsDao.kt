@@ -4,7 +4,7 @@ import androidx.room.Dao
 import androidx.room.Delete
 import androidx.room.Insert
 import androidx.room.Query
-import com.example.futax.futax_application.domain.Log
+import com.example.futax.futax_application.data.local.models.Log
 import kotlinx.coroutines.flow.Flow
 
 @Dao

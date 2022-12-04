@@ -1,4 +1,4 @@
-package com.example.futax.futax_application.domain
+package com.example.futax.futax_application.data.local.models
 
 import androidx.room.ColumnInfo
 import androidx.room.Entity
