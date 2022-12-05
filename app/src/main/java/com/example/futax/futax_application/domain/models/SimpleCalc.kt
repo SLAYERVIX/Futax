@@ -19,10 +19,22 @@ class SimpleCalc {
     private val _total: MutableStateFlow<Int> = MutableStateFlow(0)
     val total: StateFlow<Int> = _total
 
+    private var _list: MutableStateFlow<List<SimpleItem>> = MutableStateFlow(setupList())
+    val list: StateFlow<List<SimpleItem>> = _list
+
+    private fun setupList(): MutableList<SimpleItem> {
+        val simpleItem1 = SimpleItem("Selling Price", sellingPrice.value)
+        val simpleItem2 = SimpleItem("Quantity", quantity.value)
+        val simpleItem3 = SimpleItem("Total", total.value)
+        val simpleItem4 = SimpleItem("Taxes", taxes.value)
+        return mutableListOf(simpleItem1, simpleItem2, simpleItem3, simpleItem4)
+    }
+
     suspend fun setSellingPrice(sellingPrice: Int) {
         _sellingPrice.emit(
             sellingPrice
         )
+        _list.value[0].data = this.sellingPrice.value
     }
 
     suspend fun setQuantity(quantity: Int) {
@@ -32,18 +44,20 @@ class SimpleCalc {
     }
 
     private suspend fun calculateTotal() {
-        _total.emit(sellingPrice.value * quantity.value)
+        _total.emit(
+            _sellingPrice.value * _quantity.value
+        )
     }
 
     private suspend fun calculateEarning() {
         _earning.emit(
-            total.value - (total.value * 0.05).toInt()
+            _total.value - (total.value * 0.05).toInt()
         )
     }
 
     private suspend fun calculateTaxes() {
         _taxes.emit(
-            total.value - earning.value
+            _total.value - _earning.value
         )
     }
 

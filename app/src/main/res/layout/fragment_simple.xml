@@ -49,7 +49,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="16dp"
-                    android:text="@{simple.earning.toString()}"
+                    android:text="@{String.valueOf(simple.earning)}"
                     android:textSize="24sp"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/textView"
@@ -74,85 +74,19 @@
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/imageView" />
 
-                <TextView
-                    android:id="@+id/tv_title_selling_price"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/rv_simple"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
                     android:layout_marginTop="8dp"
-                    android:gravity="center"
-                    android:text="Selling Price"
-                    app:drawableStartCompat="@drawable/ic_baseline_attach_money_24"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/divider" />
-
-                <TextView
-                    android:id="@+id/tv_selling_price"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@{simple.sellingPrice.toString()}"
-                    app:layout_constraintBottom_toBottomOf="@+id/tv_title_selling_price"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toTopOf="@+id/tv_title_selling_price" />
-
-                <TextView
-                    android:id="@+id/tv_title_quantity"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="8dp"
-                    android:gravity="center"
-                    android:text="Quantity"
-                    app:drawableStartCompat="@drawable/ic_baseline_attach_money_24"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/tv_title_selling_price" />
+                    app:layout_constraintTop_toBottomOf="@+id/divider"
+                    tools:itemCount="4"
+                    app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                    tools:listitem="@layout/item_simple" />
 
-                <TextView
-                    android:id="@+id/tv_quantity"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@{simple.quantity.toString()}"
-                    app:layout_constraintBottom_toBottomOf="@+id/tv_title_quantity"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toTopOf="@+id/tv_title_quantity" />
 
-                <TextView
-                    android:id="@+id/tv_title_total"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="8dp"
-                    android:gravity="center"
-                    android:text="Total"
-                    app:drawableStartCompat="@drawable/ic_baseline_attach_money_24"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/tv_title_quantity" />
-
-                <TextView
-                    android:id="@+id/tv_total"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@{simple.total.toString()}"
-                    app:layout_constraintBottom_toBottomOf="@+id/tv_title_total"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toTopOf="@+id/tv_title_total" />
-
-                <TextView
-                    android:id="@+id/tv_title_taxes"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="8dp"
-                    android:gravity="center"
-                    android:text="Taxes"
-                    app:drawableStartCompat="@drawable/ic_baseline_attach_money_24"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/tv_title_total" />
-
-                <TextView
-                    android:id="@+id/tv_taxes"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@{simple.taxes.toString()}"
-                    app:layout_constraintBottom_toBottomOf="@+id/tv_title_taxes"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toTopOf="@+id/tv_title_taxes" />
             </androidx.constraintlayout.widget.ConstraintLayout>
         </androidx.cardview.widget.CardView>
 
@@ -176,7 +110,6 @@
             app:layout_constraintStart_toStartOf="parent"
             app:placeholderText="100,000"
             app:startIconDrawable="@drawable/coin">
-
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/et_selling_price"
                 android:layout_width="match_parent"
@@ -209,7 +142,7 @@
                 android:layout_height="wrap_content"
                 android:inputType="number"
                 android:singleLine="false"
-                android:text="@{simple.quantity.toString()}"
+                android:text="@{String.valueOf(simple.quantity)}"
                 android:textAlignment="center" />
         </com.google.android.material.textfield.TextInputLayout>
 
