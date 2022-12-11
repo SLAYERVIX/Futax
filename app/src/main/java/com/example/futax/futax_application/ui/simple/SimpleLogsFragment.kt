@@ -1,4 +1,4 @@
-package com.example.futax.futax_application.ui.complex
+package com.example.futax.futax_application.ui.simple
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -9,43 +9,42 @@ import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import com.example.futax.R
-import com.example.futax.databinding.FragmentComplexLogsBinding
-import com.example.futax.futax_application.ui.adapters.ComplexLogAdapter
+import com.example.futax.databinding.FragmentSimpleLogsBinding
+import com.example.futax.futax_application.ui.adapters.SimpleLogAdapter
 import kotlinx.coroutines.launch
 
-class ComplexLogsFragment : Fragment() {
-
-    private var _binding : FragmentComplexLogsBinding? = null
+class SimpleLogsFragment : Fragment() {
+    private var _binding : FragmentSimpleLogsBinding? = null
     private val binding get() = _binding!!
-    private val viewModel : ComplexViewModel by activityViewModels()
-
+    private val viewModel : SimpleViewModel by activityViewModels()
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        _binding = FragmentComplexLogsBinding.inflate(inflater, container, false)
+        _binding = FragmentSimpleLogsBinding.inflate(inflater, container, false)
         return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        val adapter = ComplexLogAdapter()
-        binding.rvComplexLogs.adapter = adapter
+        val adapter = SimpleLogAdapter()
+        binding.rvSimpleLogs.adapter = adapter
 
         binding.include3.toolbar.apply {
-            inflateMenu(R.menu.menu_complex_logs)
+            inflateMenu(R.menu.menu_simple_logs)
             setOnMenuItemClickListener {
                 when (it.itemId) {
-                    R.id.action_complex_logs_back -> findNavController().popBackStack()
-                    R.id.action_clear_complex_logs -> viewModel.clearComplexLogs()
+                    R.id.action_simple_logs_back -> findNavController().popBackStack()
+
+                    R.id.action_simple_logs_clear -> viewModel.clearSimpleLogs()
                 }
                 true
             }
         }
 
         lifecycleScope.launch {
-            viewModel.getComplexLogs().collect {
+            viewModel.getSimpleLogs().collect {
                 adapter.submitList(it)
             }
         }

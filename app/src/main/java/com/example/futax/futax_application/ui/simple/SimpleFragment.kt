@@ -7,6 +7,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
+import androidx.navigation.Navigation
 import com.example.futax.R
 import com.example.futax.databinding.FragmentSimpleBinding
 import com.example.futax.futax_application.ui.adapters.SimpleAdapter
@@ -34,6 +35,14 @@ class SimpleFragment : Fragment() {
         binding.model = model
 
         binding.include2.toolbar.inflateMenu(R.menu.menu_simple)
+
+        binding.include2.toolbar.setOnMenuItemClickListener {
+            if (it.itemId == R.id.action_simple_logs) {
+                Navigation.findNavController(view)
+                    .navigate(R.id.action_simpleFragment2_to_simpleLogsFragment)
+            }
+            true
+        }
 
         val adapter = SimpleAdapter()
         binding.rvSimple.adapter = adapter

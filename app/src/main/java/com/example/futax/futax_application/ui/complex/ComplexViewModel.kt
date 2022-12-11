@@ -5,6 +5,7 @@ import androidx.lifecycle.viewModelScope
 import com.example.futax.futax_application.data.local.models.ComplexLog
 import com.example.futax.futax_application.domain.models.CalculatorItem
 import com.example.futax.futax_application.domain.repository.LocalRepository
+import com.example.futax.utils.Date
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -79,6 +80,7 @@ class ComplexViewModel @Inject constructor(private val localRepository: LocalRep
     private fun insertComplexLog() = viewModelScope.launch {
         val complexLog = ComplexLog(
             0,
+            Date.date,
             buyPrice.value,
             sellingPrice.value,
             quantity.value,

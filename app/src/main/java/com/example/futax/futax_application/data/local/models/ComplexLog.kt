@@ -9,6 +9,9 @@ data class ComplexLog(
     @PrimaryKey(autoGenerate = true)
     val id: Int = 0,
 
+    @ColumnInfo(name = "date")
+    val date: String,
+
     @ColumnInfo(name = "bought_price")
     val boughtPrice: Int,
 

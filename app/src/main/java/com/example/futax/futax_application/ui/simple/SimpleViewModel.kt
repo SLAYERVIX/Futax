@@ -2,12 +2,19 @@ package com.example.futax.futax_application.ui.simple
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.example.futax.futax_application.data.local.models.SimpleLog
 import com.example.futax.futax_application.domain.models.CalculatorItem
+import com.example.futax.futax_application.domain.repository.LocalRepository
+import com.example.futax.utils.Date
+import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.launch
+import javax.inject.Inject
 
-class SimpleViewModel : ViewModel() {
+@HiltViewModel
+class SimpleViewModel @Inject constructor(private val localRepository: LocalRepository) : ViewModel() {
 
     val sellingPrice: MutableStateFlow<Int> = MutableStateFlow(0)
 
@@ -54,5 +61,26 @@ class SimpleViewModel : ViewModel() {
         calculateEarning()
 
         _list.emit(setupList())
+
+        insertSimpleLog()
+    }
+
+    fun getSimpleLogs(): Flow<List<SimpleLog>> = localRepository.getSimpleLogs()
+
+    private fun insertSimpleLog() = viewModelScope.launch {
+        val simpleLog = SimpleLog(
+            0,
+            Date.date,
+            sellingPrice.value,
+            quantity.value,
+            taxes.value,
+            total.value,
+            earning.value,
+        )
+        localRepository.insertSimpleLog(simpleLog)
+    }
+
+    fun clearSimpleLogs() = viewModelScope.launch {
+        localRepository.clearSimpleLogs()
     }
 }

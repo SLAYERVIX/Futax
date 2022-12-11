@@ -5,15 +5,15 @@
 
     <data>
         <variable
-            name="complexLogItem"
-            type="com.example.futax.futax_application.data.local.models.ComplexLog" />
+            name="simpleLogItem"
+            type="com.example.futax.futax_application.data.local.models.SimpleLog"/>
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
+        android:layout_height="wrap_content"
         android:paddingHorizontal="16dp"
-        android:paddingVertical="8dp"
-        android:layout_height="wrap_content">
+        android:paddingVertical="8dp">
 
         <androidx.cardview.widget.CardView
             android:layout_width="match_parent"
@@ -33,7 +33,7 @@
                     android:id="@+id/textView6"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Profit"
+                    android:text="Earning"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
 
@@ -41,18 +41,11 @@
                     android:id="@+id/tv_log_profit"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@{complexLogItem.date}"
+                    android:text="@{simpleLogItem.date}"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/textView6" />
+                    app:layout_constraintTop_toBottomOf="@+id/textView6"
+                    tools:text="0" />
 
-                <TextView
-                    android:id="@+id/textView7"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@{String.valueOf(complexLogItem.sellingPrice)}"
-                    app:layout_constraintBottom_toBottomOf="@+id/textView9"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toTopOf="@+id/textView9" />
 
                 <View
                     android:id="@+id/divider2"
@@ -69,37 +62,29 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="8dp"
-                    android:text="Bought for:"
+                    android:text="Sell Price:"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@id/divider2" />
-
-                <TextView
-                    android:id="@+id/textView9"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="8dp"
-                    android:text="Sold for:"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/textView8" />
 
                 <TextView
                     android:id="@+id/textView10"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@{String.valueOf(complexLogItem.boughtPrice)}"
+                    android:text="@{String.valueOf(simpleLogItem.sellingPrice)}"
                     app:layout_constraintBottom_toBottomOf="@+id/textView8"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toTopOf="@+id/textView8" />
+                    app:layout_constraintTop_toTopOf="@+id/textView8"
+                    tools:text="0" />
 
                 <TextView
                     android:id="@+id/textView11"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@{String.valueOf(complexLogItem.profit)}"
-                    tools:text="0"
+                    android:text="@{String.valueOf(simpleLogItem.earning)}"
                     app:layout_constraintBottom_toBottomOf="@+id/tv_log_profit"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toTopOf="@+id/textView6" />
+                    app:layout_constraintTop_toTopOf="@+id/textView6"
+                    tools:text="0" />
             </androidx.constraintlayout.widget.ConstraintLayout>
 
         </androidx.cardview.widget.CardView>

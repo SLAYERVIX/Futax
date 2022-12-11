@@ -9,6 +9,9 @@ data class SimpleLog(
     @PrimaryKey(autoGenerate = true)
     val id: Int = 0,
 
+    @ColumnInfo(name = "date")
+    val date: String,
+
     @ColumnInfo(name = "selling_price")
     val sellingPrice: Int,
 
