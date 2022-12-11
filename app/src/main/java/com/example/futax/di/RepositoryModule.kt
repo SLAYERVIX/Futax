@@ -1,6 +1,7 @@
 package com.example.futax.di
 
-import com.example.futax.futax_application.data.local.LogsDao
+import com.example.futax.futax_application.data.local.dao.ComplexLogsDao
+import com.example.futax.futax_application.data.local.dao.SimpleLogsDao
 import com.example.futax.futax_application.data.repository.LocalRepositoryImpl
 import com.example.futax.futax_application.domain.repository.LocalRepository
 import dagger.Module
@@ -15,6 +16,7 @@ class RepositoryModule {
     @Provides
     @Singleton
     fun bindLocalRepository(
-        logsDao: LogsDao
-    ) : LocalRepository = LocalRepositoryImpl(logsDao)
+        simpleLogsDao: SimpleLogsDao,
+        complexLogsDao: ComplexLogsDao
+    ) : LocalRepository = LocalRepositoryImpl(simpleLogsDao,complexLogsDao)
 }

@@ -4,10 +4,13 @@ import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.PrimaryKey
 
-@Entity(tableName = "simple_log_table")
-data class SimpleLog(
+@Entity(tableName = "complex_log_table")
+data class ComplexLog(
     @PrimaryKey(autoGenerate = true)
     val id: Int = 0,
+
+    @ColumnInfo(name = "bought_price")
+    val boughtPrice: Int,
 
     @ColumnInfo(name = "selling_price")
     val sellingPrice: Int,
@@ -22,6 +25,9 @@ data class SimpleLog(
     val total: Int,
 
     @ColumnInfo(name = "earning")
-    val earning: Int
+    val earning: Int,
+
+    @ColumnInfo(name = "profit")
+    val profit: Int
 )
 

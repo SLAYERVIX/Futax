@@ -6,29 +6,42 @@
 
     <data>
 
+        <import type="com.example.futax.utils.Converters" />
+
         <variable
-            name="simple"
-            type="com.example.futax.futax_application.domain.models.SimpleCalc" />
+            name="model"
+            type="com.example.futax.futax_application.ui.simple.SimpleViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/constraintLayout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:padding="16dp"
         tools:context=".futax_application.ui.simple.SimpleFragment">
+
+        <include
+            android:id="@+id/include2"
+            layout="@layout/toolbar"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
 
         <androidx.cardview.widget.CardView
             android:id="@+id/cardView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="16dp"
             app:cardCornerRadius="20dp"
             app:cardElevation="4dp"
             app:cardUseCompatPadding="true"
             app:contentPadding="16dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent">
+            app:layout_constraintTop_toBottomOf="@+id/include2">
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
@@ -49,7 +62,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="16dp"
-                    android:text="@{String.valueOf(simple.earning)}"
+                    android:text="@{model.earning.toString()}"
                     android:textSize="24sp"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/textView"
@@ -79,12 +92,13 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_marginTop="8dp"
+                    android:visibility="visible"
+                    app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/divider"
                     tools:itemCount="4"
-                    app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-                    tools:listitem="@layout/item_simple" />
+                    tools:listitem="@layout/calculator_item" />
 
 
             </androidx.constraintlayout.widget.ConstraintLayout>
@@ -95,6 +109,7 @@
             style="@style/ThemeOverlay.Material3.TextInputEditText.OutlinedBox"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
             android:layout_marginEnd="16dp"
             android:layout_marginBottom="16dp"
             android:hint="@string/hint"
@@ -110,12 +125,14 @@
             app:layout_constraintStart_toStartOf="parent"
             app:placeholderText="100,000"
             app:startIconDrawable="@drawable/coin">
+
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/et_selling_price"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:inputType="number"
-                android:singleLine="false" />
+                android:singleLine="false"
+                android:text="@={Converters.priceToString(model.sellingPrice)}" />
         </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.textfield.TextInputLayout
@@ -123,6 +140,7 @@
             style="@style/ThemeOverlay.Material3.TextInputEditText.OutlinedBox"
             android:layout_width="60dp"
             android:layout_height="wrap_content"
+            android:layout_marginEnd="16dp"
             android:layout_marginBottom="16dp"
             android:hint="@string/quantity"
             app:boxCornerRadiusBottomEnd="20dp"
@@ -131,8 +149,8 @@
             app:boxCornerRadiusTopStart="20dp"
             app:counterMaxLength="8"
             app:helperTextEnabled="false"
-            app:hintEnabled="true"
 
+            app:hintEnabled="true"
             app:layout_constraintBottom_toTopOf="@+id/btn_calculate"
             app:layout_constraintEnd_toEndOf="parent">
 
@@ -142,7 +160,7 @@
                 android:layout_height="wrap_content"
                 android:inputType="number"
                 android:singleLine="false"
-                android:text="@{String.valueOf(simple.quantity)}"
+                android:text="@={Converters.priceToString(model.quantity)}"
                 android:textAlignment="center" />
         </com.google.android.material.textfield.TextInputLayout>
 
@@ -150,6 +168,9 @@
             android:id="@+id/btn_calculate"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginEnd="16dp"
+            android:onClick="@{() -> model.calculateBtnOnClick()}"
             android:paddingVertical="8dp"
             android:text="@string/calculate"
             android:textAllCaps="true"

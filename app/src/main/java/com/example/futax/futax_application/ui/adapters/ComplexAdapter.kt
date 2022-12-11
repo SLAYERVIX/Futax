@@ -8,10 +8,9 @@ import com.example.futax.databinding.CalculatorItemBinding
 import com.example.futax.futax_application.domain.models.CalculatorItem
 import com.example.futax.futax_application.ui.utils.differs.CalculatorDiffItemCallBack
 
-class SimpleAdapter() :
-    ListAdapter<CalculatorItem, SimpleAdapter.SimpleViewHolder>(CalculatorDiffItemCallBack()) {
-
-    inner class SimpleViewHolder(val binding: CalculatorItemBinding) :
+class ComplexAdapter :
+    ListAdapter<CalculatorItem, ComplexAdapter.ComplexViewHolder>(CalculatorDiffItemCallBack()) {
+    inner class ComplexViewHolder(val binding: CalculatorItemBinding) :
         RecyclerView.ViewHolder(binding.root) {
         fun bind(item: CalculatorItem) {
             binding.calculatorItem = item
@@ -19,9 +18,9 @@ class SimpleAdapter() :
         }
     }
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): SimpleViewHolder {
-        return SimpleViewHolder(
-            binding = CalculatorItemBinding.inflate(
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ComplexViewHolder {
+        return ComplexViewHolder(
+            CalculatorItemBinding.inflate(
                 LayoutInflater.from(parent.context),
                 parent,
                 false
@@ -29,7 +28,7 @@ class SimpleAdapter() :
         )
     }
 
-    override fun onBindViewHolder(holder: SimpleViewHolder, position: Int) {
+    override fun onBindViewHolder(holder: ComplexViewHolder, position: Int) {
         holder.bind(getItem(position))
     }
 }

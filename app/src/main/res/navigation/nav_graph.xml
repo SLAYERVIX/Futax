@@ -18,5 +18,14 @@
         android:id="@+id/complexFragment2"
         android:name="com.example.futax.futax_application.ui.complex.ComplexFragment"
         android:label="fragment_complex"
-        tools:layout="@layout/fragment_complex" />
+        tools:layout="@layout/fragment_complex" >
+        <action
+            android:id="@+id/action_complexFragment2_to_complexLogsFragment2"
+            app:destination="@id/complexLogsFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/complexLogsFragment"
+        android:name="com.example.futax.futax_application.ui.complex.ComplexLogsFragment"
+        android:label="fragment_complex_logs"
+        tools:layout="@layout/fragment_complex_logs" />
 </navigation>

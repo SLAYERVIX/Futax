@@ -5,8 +5,8 @@
 
     <data>
         <variable
-            name="simpleItem"
-            type="com.example.futax.futax_application.domain.models.SimpleItem" />
+            name="calculatorItem"
+            type="com.example.futax.futax_application.domain.models.CalculatorItem" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -22,7 +22,7 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             tools:drawableStartCompat="@drawable/ic_baseline_attach_money_24"
-            tools:text="@{simpleItem.title}" />
+            tools:text="@{calculatorItem.title}" />
 
         <TextView
             android:id="@+id/tv_simple_data"
@@ -31,6 +31,6 @@
             app:layout_constraintBottom_toBottomOf="@+id/tv_simple_title"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="@+id/tv_simple_title"
-            tools:text="@{String.valueOf(simpleItem.data)}" />
+            tools:text="@{String.valueOf(calculatorItem.data)}" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
