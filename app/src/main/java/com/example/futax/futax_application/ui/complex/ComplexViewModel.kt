@@ -42,25 +42,25 @@ class ComplexViewModel @Inject constructor(private val localRepository: LocalRep
         )
     }
 
-    private suspend fun calculateTotal() {
+    private suspend inline fun calculateTotal() {
         total.emit(
             sellingPrice.value * quantity.value
         )
     }
 
-    private suspend fun calculateTaxes() {
+    private suspend inline fun calculateTaxes() {
         taxes.emit(
             (total.value * 0.05).toInt()
         )
     }
 
-    private suspend fun calculateEarning() {
+    private suspend inline fun calculateEarning() {
         _earning.emit(
             total.value - taxes.value
         )
     }
 
-    private suspend fun calculateProfit() {
+    private suspend inline fun calculateProfit() {
         profit.emit(
             _earning.value - buyPrice.value
         )

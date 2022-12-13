@@ -14,7 +14,8 @@ import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
-class SimpleViewModel @Inject constructor(private val localRepository: LocalRepository) : ViewModel() {
+class SimpleViewModel @Inject constructor(private val localRepository: LocalRepository) :
+    ViewModel() {
 
     val sellingPrice: MutableStateFlow<Int> = MutableStateFlow(0)
 
@@ -37,19 +38,19 @@ class SimpleViewModel @Inject constructor(private val localRepository: LocalRepo
         )
     }
 
-    private suspend fun calculateTotal() {
+    private suspend inline fun calculateTotal() {
         total.emit(
             sellingPrice.value * quantity.value
         )
     }
 
-    private suspend fun calculateTaxes() {
+    private suspend inline fun calculateTaxes() {
         taxes.emit(
             (total.value * 0.05).toInt()
         )
     }
 
-    private suspend fun calculateEarning() {
+    private suspend inline fun calculateEarning() {
         _earning.emit(
             total.value - taxes.value
         )

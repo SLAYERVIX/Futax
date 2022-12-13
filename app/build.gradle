@@ -53,7 +53,7 @@ dependencies {
 
     // Android KTX
     implementation "androidx.activity:activity-ktx:1.6.1"
-    implementation "androidx.fragment:fragment-ktx:1.5.4"
+    implementation "androidx.fragment:fragment-ktx:1.5.5"
     
     // Lifecycle
     def lifecycle_version = "2.5.1"

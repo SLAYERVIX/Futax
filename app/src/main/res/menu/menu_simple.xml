@@ -5,6 +5,6 @@
     <item
         android:id="@+id/action_simple_logs"
         android:icon="@drawable/ic_baseline_assignment_24"
-        android:title="Logs"
+        android:title="@string/logs"
         app:showAsAction="ifRoom" />
 </menu>

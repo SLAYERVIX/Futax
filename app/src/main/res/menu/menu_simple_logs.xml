@@ -5,11 +5,11 @@
     <item
         android:id="@+id/action_simple_logs_clear"
         android:icon="@drawable/ic_baseline_clear_all_24"
-        android:title="Clear"
+        android:title="@string/clear"
         app:showAsAction="ifRoom" />
     <item
         android:id="@+id/action_simple_logs_back"
         android:icon="@drawable/ic_baseline_keyboard_return_24"
-        android:title="Back"
+        android:title="@string/back"
         app:showAsAction="ifRoom" />
 </menu>

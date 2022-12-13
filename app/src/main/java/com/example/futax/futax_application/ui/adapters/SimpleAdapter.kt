@@ -8,7 +8,7 @@ import com.example.futax.databinding.ItemCalculatorResultBinding
 import com.example.futax.futax_application.domain.models.CalculatorItem
 import com.example.futax.futax_application.ui.utils.differs.CalculatorDiffItemCallBack
 
-class SimpleAdapter() :
+class SimpleAdapter :
     ListAdapter<CalculatorItem, SimpleAdapter.SimpleViewHolder>(CalculatorDiffItemCallBack()) {
 
     inner class SimpleViewHolder(val binding: ItemCalculatorResultBinding) :

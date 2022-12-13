@@ -20,7 +20,7 @@
         <include
             android:id="@+id/include"
             layout="@layout/toolbar"
-            android:layout_width="0dp"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -122,8 +122,7 @@
             app:layout_constraintEnd_toStartOf="@+id/guideline2"
             app:layout_constraintHorizontal_bias="1.0"
             app:layout_constraintStart_toStartOf="parent"
-            app:placeholderText="100,000"
-            app:startIconDrawable="@drawable/coin">
+            app:placeholderText="100,000">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/et_bought"
@@ -154,8 +153,7 @@
             app:layout_constraintBottom_toTopOf="@+id/etl_selling"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="@+id/guideline2"
-            app:placeholderText="3"
-            app:startIconDrawable="@drawable/coin">
+            app:placeholderText="3">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/et_quantity"
@@ -186,8 +184,7 @@
             app:layout_constraintBottom_toTopOf="@+id/btn_calculate"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:placeholderText="100,000"
-            app:startIconDrawable="@drawable/coin">
+            app:placeholderText="100,000">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/et_selling_price"

@@ -1,6 +1,5 @@
 package com.example.futax.futax_application.ui
 
-import android.content.Context
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.fragment.NavHostFragment

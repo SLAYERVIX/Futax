@@ -14,7 +14,6 @@
         app:showAsAction="ifRoom" />
     <item
         android:id="@+id/complexFragment2"
-        android:icon="@drawable/complext_calculator"
         android:title="@string/complex"
         app:showAsAction="ifRoom" />
 </menu>

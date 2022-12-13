@@ -4,8 +4,6 @@
     <string name="hint">value</string>
     <string name="earning">Earning</string>
     <string name="app_title">FUTAX</string>
-    <string name="selling_price">Selling price</string>
-    <string name="taxes">Taxes</string>
     <string name="quantity">Qty</string>
     <string name="home">Home</string>
     <string name="simple">Simple</string>
@@ -13,5 +11,8 @@
     <string name="buy_price">Buy Price</string>
     <string name="sell_price">Sell Price</string>
     <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="profit">Profit</string>
+    <string name="logs">Logs</string>
+    <string name="clear">Clear</string>
+    <string name="back">Back</string>
 </resources>

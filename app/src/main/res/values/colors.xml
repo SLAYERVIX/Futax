@@ -12,7 +12,4 @@
     <color name="white">#FFFFFF</color>
 
     <!-- Gradient -->
-    <color name="gradient_start">#0F2027</color>
-    <color name="gradient_center">#203A43</color>
-    <color name="gradient_end">#2C5364</color>
 </resources>
