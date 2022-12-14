@@ -18,40 +18,32 @@
         android:layout_height="match_parent"
         tools:context=".futax_application.ui.simple.SimpleFragment">
 
-        <include
-            android:id="@+id/include2"
-            layout="@layout/toolbar"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
-
         <androidx.cardview.widget.CardView
             android:id="@+id/cardView"
-            android:layout_width="match_parent"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
-            android:layout_marginTop="8dp"
+            android:layout_marginTop="16dp"
             android:layout_marginEnd="16dp"
             app:cardCornerRadius="20dp"
             app:cardElevation="4dp"
-            app:cardUseCompatPadding="true"
-            app:contentPadding="16dp"
+            app:cardUseCompatPadding="false"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/include2">
+            app:layout_constraintTop_toTopOf="parent">
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
-                android:layout_height="match_parent">
+                android:layout_height="match_parent"
+                android:paddingHorizontal="16dp"
+                android:paddingTop="16dp">
 
                 <TextView
                     android:id="@+id/textView"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/earning"
+                    app:layout_constraintBottom_toTopOf="@id/tv_earning"
                     android:textSize="18sp"
                     android:textStyle="bold"
                     app:layout_constraintStart_toStartOf="parent"
@@ -79,7 +71,8 @@
 
                 <View
                     android:id="@+id/divider"
-                    android:layout_width="match_parent"
+                    android:layout_width="0dp"
+                    android:visibility="gone"
                     android:layout_height="1dp"
                     android:layout_marginTop="8dp"
                     android:background="?android:attr/listDivider"
@@ -87,12 +80,23 @@
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/imageView" />
 
+                <ImageButton
+                    android:id="@+id/btn_simple_expand"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@android:color/transparent"
+                    android:paddingHorizontal="16dp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/rv_simple"
+                    app:srcCompat="@drawable/ic_baseline_expand_more_24" />
+
                 <androidx.recyclerview.widget.RecyclerView
                     android:id="@+id/rv_simple"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_marginTop="8dp"
-                    android:visibility="visible"
+                    android:visibility="gone"
                     app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
@@ -177,6 +181,7 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent" />
+
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

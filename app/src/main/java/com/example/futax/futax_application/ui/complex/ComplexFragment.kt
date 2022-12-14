@@ -1,29 +1,35 @@
 package com.example.futax.futax_application.ui.complex
 
 import android.os.Bundle
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
+import android.view.*
+import androidx.core.view.MenuHost
+import androidx.core.view.MenuProvider
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
+import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.Navigation
+import androidx.navigation.fragment.findNavController
 import com.example.futax.R
 import com.example.futax.databinding.FragmentComplexBinding
 import com.example.futax.futax_application.ui.adapters.ComplexAdapter
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
-class ComplexFragment : Fragment() {
-    private var _binding: FragmentComplexBinding? = null
-    private val binding get() = _binding!!
+class ComplexFragment : Fragment(), MenuProvider {
+
+    private lateinit var binding: FragmentComplexBinding
     private val model: ComplexViewModel by activityViewModels()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        _binding = FragmentComplexBinding.inflate(inflater, container, false)
+        binding = FragmentComplexBinding.inflate(inflater, container, false)
+
+        val menuHost: MenuHost = requireActivity()
+        menuHost.addMenuProvider(this, viewLifecycleOwner, Lifecycle.State.RESUMED)
+
         return binding.root
     }
 
@@ -32,15 +38,22 @@ class ComplexFragment : Fragment() {
         binding.lifecycleOwner = this
         binding.model = model
 
-        binding.include.toolbar.inflateMenu(R.menu.menu_complex)
-
-        binding.include.toolbar.setOnMenuItemClickListener {
-            if (it.itemId == R.id.action_complex_logs) {
-                Navigation.findNavController(view)
-                    .navigate(R.id.action_complexFragment2_to_complexLogsFragment2)
+        binding.btnComplexExpand.setOnClickListener {
+            if (binding.rvComplex.visibility == View.GONE) {
+                binding.apply {
+                    rvComplex.visibility = View.VISIBLE
+                    divider.visibility = View.VISIBLE
+                    btnComplexExpand.setImageResource(R.drawable.ic_baseline_expand_less_24)
+                }
+            } else {
+                binding.apply {
+                    rvComplex.visibility = View.GONE
+                    divider.visibility = View.GONE
+                    btnComplexExpand.setImageResource(R.drawable.ic_baseline_expand_more_24)
+                }
             }
-            true
         }
+
 
         val adapter = ComplexAdapter()
         binding.rvComplex.adapter = adapter
@@ -52,8 +65,17 @@ class ComplexFragment : Fragment() {
         }
     }
 
-    override fun onDestroyView() {
-        super.onDestroyView()
-        _binding = null
+    override fun onCreateMenu(menu: Menu, menuInflater: MenuInflater) {
+        menuInflater.inflate(R.menu.menu_complex, menu)
+    }
+
+    override fun onMenuItemSelected(menuItem: MenuItem): Boolean {
+        return when (menuItem.itemId) {
+            R.id.action_complex_logs -> {
+                findNavController().navigate(R.id.action_complexFragment2_to_complexLogsFragment2)
+                true
+            }
+            else -> false
+        }
     }
 }
