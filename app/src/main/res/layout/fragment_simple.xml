@@ -18,6 +18,13 @@
         android:layout_height="match_parent"
         tools:context=".futax_application.ui.simple.SimpleFragment">
 
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideline3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_percent="0.55" />
+
         <androidx.cardview.widget.CardView
             android:id="@+id/cardView"
             android:layout_width="0dp"
@@ -25,7 +32,7 @@
             android:layout_marginStart="16dp"
             android:layout_marginTop="16dp"
             android:layout_marginEnd="16dp"
-            app:cardCornerRadius="20dp"
+            app:cardCornerRadius="4dp"
             app:cardElevation="4dp"
             app:cardUseCompatPadding="false"
             app:layout_constraintEnd_toEndOf="parent"
@@ -43,9 +50,9 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/earning"
-                    app:layout_constraintBottom_toTopOf="@id/tv_earning"
                     android:textSize="18sp"
                     android:textStyle="bold"
+                    app:layout_constraintBottom_toTopOf="@id/tv_earning"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
 
@@ -72,10 +79,10 @@
                 <View
                     android:id="@+id/divider"
                     android:layout_width="0dp"
-                    android:visibility="gone"
                     android:layout_height="1dp"
                     android:layout_marginTop="8dp"
                     android:background="?android:attr/listDivider"
+                    android:visibility="gone"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/imageView" />
@@ -113,58 +120,58 @@
             style="@style/ThemeOverlay.Material3.TextInputEditText.OutlinedBox"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:layout_marginHorizontal="16dp"
             android:layout_marginStart="16dp"
-            android:layout_marginEnd="16dp"
+            android:layout_marginEnd="8dp"
             android:layout_marginBottom="16dp"
-            android:hint="@string/hint"
-            app:boxCornerRadiusBottomEnd="20dp"
-            app:boxCornerRadiusBottomStart="20dp"
-            app:boxCornerRadiusTopEnd="20dp"
-            app:boxCornerRadiusTopStart="20dp"
             app:counterMaxLength="8"
-            app:helperTextEnabled="false"
+            app:helperText="@string/required"
+            app:helperTextTextColor="@color/red"
             app:hintEnabled="true"
+            app:hintTextColor="@color/white"
             app:layout_constraintBottom_toTopOf="@+id/btn_calculate"
-            app:layout_constraintEnd_toStartOf="@+id/til_quantity"
-            app:layout_constraintStart_toStartOf="parent"
-            app:placeholderText="100,000">
+            app:layout_constraintEnd_toStartOf="@+id/guideline3"
+            app:layout_constraintStart_toStartOf="parent">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/et_selling_price"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:hint="@string/sell_for"
                 android:inputType="number"
-                android:singleLine="false"
+                android:lines="1"
+                android:maxLength="8"
                 android:text="@={Converters.priceToString(model.sellingPrice)}" />
         </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/til_quantity"
             style="@style/ThemeOverlay.Material3.TextInputEditText.OutlinedBox"
-            android:layout_width="60dp"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
             android:layout_marginEnd="16dp"
             android:layout_marginBottom="16dp"
-            android:hint="@string/quantity"
-            app:boxCornerRadiusBottomEnd="20dp"
-            app:boxCornerRadiusBottomStart="20dp"
-            app:boxCornerRadiusTopEnd="20dp"
-            app:boxCornerRadiusTopStart="20dp"
-            app:counterMaxLength="8"
+            app:counterEnabled="true"
+            app:counterMaxLength="3"
+            app:helperText="@string/required"
             app:helperTextEnabled="false"
-
+            app:helperTextTextColor="@color/red"
             app:hintEnabled="true"
+            app:hintTextColor="@color/white"
             app:layout_constraintBottom_toTopOf="@+id/btn_calculate"
-            app:layout_constraintEnd_toEndOf="parent">
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="@+id/guideline3">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/tiet_quantity"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:hint="@string/quantity"
                 android:inputType="number"
-                android:singleLine="false"
-                android:text="@={Converters.priceToString(model.quantity)}"
-                android:textAlignment="center" />
+                android:lines="1"
+                android:maxLength="8"
+                android:text="@={Converters.priceToString(model.quantity)}" />
         </com.google.android.material.textfield.TextInputLayout>
 
         <Button
