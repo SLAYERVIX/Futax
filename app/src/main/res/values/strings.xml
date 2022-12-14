@@ -15,4 +15,6 @@
     <string name="logs">Logs</string>
     <string name="clear">Clear</string>
     <string name="back">Back</string>
+    <string name="empty_logs">There is no recent calculations</string>
+    <string name="reset">Reset</string>
 </resources>

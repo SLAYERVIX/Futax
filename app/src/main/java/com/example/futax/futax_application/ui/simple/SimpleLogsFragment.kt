@@ -9,6 +9,10 @@ import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
+import androidx.recyclerview.widget.GridLayoutManager
+import androidx.recyclerview.widget.ItemTouchHelper
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.example.futax.R
 import com.example.futax.databinding.FragmentSimpleLogsBinding
 import com.example.futax.futax_application.ui.adapters.SimpleLogAdapter
@@ -35,10 +39,49 @@ class SimpleLogsFragment : Fragment(),MenuProvider {
         val adapter = SimpleLogAdapter()
         binding.rvSimpleLogs.adapter = adapter
 
+        ItemTouchHelper(object : ItemTouchHelper.SimpleCallback(0, ItemTouchHelper.LEFT) {
+            override fun onMove(
+                recyclerView: RecyclerView,
+                viewHolder: RecyclerView.ViewHolder,
+                target: RecyclerView.ViewHolder
+            ): Boolean {
+                return false
+            }
+
+            override fun onSwiped(viewHolder: RecyclerView.ViewHolder, direction: Int) {
+                lifecycleScope.launch {
+                    viewModel.deleteSimpleLog(adapter.currentList[viewHolder.adapterPosition])
+                }
+            }
+
+        }).attachToRecyclerView(binding.rvSimpleLogs)
+
         lifecycleScope.launch {
             viewModel.getSimpleLogs().collect {
                 adapter.submitList(it)
+                if (it.isEmpty()) {
+                    binding.apply {
+                        textView2.visibility = View.VISIBLE
+                        btnGridView.visibility = View.GONE
+                        btnLinearView.visibility = View.GONE
+                    }
+                }
+                else {
+                    binding.apply {
+                        textView2.visibility = View.GONE
+                        btnGridView.visibility = View.VISIBLE
+                        btnLinearView.visibility = View.VISIBLE
+                    }
+                }
             }
+        }
+
+        binding.btnGridView.setOnClickListener {
+            binding.rvSimpleLogs.layoutManager = GridLayoutManager(view.context,2)
+        }
+
+        binding.btnLinearView.setOnClickListener {
+            binding.rvSimpleLogs.layoutManager = LinearLayoutManager(view.context)
         }
     }
 

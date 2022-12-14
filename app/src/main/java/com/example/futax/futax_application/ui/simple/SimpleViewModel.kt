@@ -38,6 +38,15 @@ class SimpleViewModel @Inject constructor(private val localRepository: LocalRepo
         )
     }
 
+    fun resetFields() = viewModelScope.launch{
+        sellingPrice.emit(0)
+        quantity.emit(1)
+        taxes.emit(0)
+        total.emit(0)
+        _earning.emit(0)
+        _list.emit(setupList())
+    }
+
     private suspend inline fun calculateTotal() {
         total.emit(
             sellingPrice.value * quantity.value
@@ -79,6 +88,10 @@ class SimpleViewModel @Inject constructor(private val localRepository: LocalRepo
             earning.value,
         )
         localRepository.insertSimpleLog(simpleLog)
+    }
+
+    fun deleteSimpleLog(simpleLog: SimpleLog) = viewModelScope.launch {
+        localRepository.deleteSimpleLog(simpleLog)
     }
 
     fun clearSimpleLogs() = viewModelScope.launch {

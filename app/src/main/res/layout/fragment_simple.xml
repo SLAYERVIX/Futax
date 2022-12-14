@@ -173,6 +173,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
             android:layout_marginEnd="16dp"
+            android:layout_marginBottom="16dp"
             android:onClick="@{() -> model.calculateBtnOnClick()}"
             android:paddingVertical="8dp"
             android:text="@string/calculate"

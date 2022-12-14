@@ -6,15 +6,44 @@
     android:layout_height="match_parent"
     tools:context=".futax_application.ui.complex.ComplexLogsFragment">
 
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/empty_logs"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="@+id/rv_simple_logs"
+        app:layout_constraintEnd_toEndOf="@+id/rv_simple_logs"
+        app:layout_constraintStart_toStartOf="@+id/rv_simple_logs"
+        app:layout_constraintTop_toTopOf="parent" />
+
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rv_simple_logs"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:layout_marginTop="8dp"
         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btn_linear_view"
         tools:listitem="@layout/item_simple_log" />
+
+    <ImageButton
+        android:id="@+id/btn_grid_view"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:src="@drawable/ic_baseline_grid_view_24"
+        app:layout_constraintEnd_toStartOf="@+id/btn_linear_view"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageButton
+        android:id="@+id/btn_linear_view"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="16dp"
+        android:src="@drawable/ic_baseline_view_headline_24"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 </androidx.constraintlayout.widget.ConstraintLayout>

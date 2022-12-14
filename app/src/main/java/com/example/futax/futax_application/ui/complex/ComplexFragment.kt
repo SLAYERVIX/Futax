@@ -75,6 +75,10 @@ class ComplexFragment : Fragment(), MenuProvider {
                 findNavController().navigate(R.id.action_complexFragment2_to_complexLogsFragment2)
                 true
             }
+            R.id.action_complex_reset -> {
+                model.resetFields()
+                true
+            }
             else -> false
         }
     }

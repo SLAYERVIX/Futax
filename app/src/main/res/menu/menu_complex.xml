@@ -3,8 +3,15 @@
     xmlns:android="http://schemas.android.com/apk/res/android">
 
     <item
+        android:id="@+id/action_complex_reset"
+        android:icon="@drawable/ic_baseline_cached_24"
+        android:title="@string/reset"
+        app:showAsAction="ifRoom" />
+
+    <item
         android:id="@+id/action_complex_logs"
         android:icon="@drawable/ic_baseline_assignment_24"
         android:title="@string/logs"
         app:showAsAction="ifRoom" />
+
 </menu>

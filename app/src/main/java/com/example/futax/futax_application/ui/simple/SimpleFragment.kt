@@ -10,6 +10,8 @@ import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.Navigation
 import androidx.navigation.fragment.findNavController
+import androidx.recyclerview.widget.ItemTouchHelper
+import androidx.recyclerview.widget.RecyclerView
 import com.example.futax.R
 import com.example.futax.databinding.FragmentSimpleBinding
 import com.example.futax.futax_application.ui.adapters.SimpleAdapter
@@ -73,6 +75,10 @@ class SimpleFragment : Fragment(), MenuProvider {
         return when (menuItem.itemId) {
             R.id.action_simple_logs -> {
                 findNavController().navigate(R.id.action_simpleFragment2_to_simpleLogsFragment)
+                true
+            }
+            R.id.action_simple_reset -> {
+                model.resetFields()
                 true
             }
 
