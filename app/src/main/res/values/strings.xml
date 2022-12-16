@@ -18,4 +18,7 @@
     <string name="empty_logs">There is no recent calculations</string>
     <string name="reset">Reset</string>
     <string name="required">Required</string>
+    <string name="grid_view">Grid View</string>
+    <string name="list_view">List View</string>
+    <string name="collapse">collapse</string>
 </resources>

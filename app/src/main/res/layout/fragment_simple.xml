@@ -27,14 +27,11 @@
 
         <androidx.cardview.widget.CardView
             android:id="@+id/cardView"
-            android:layout_width="0dp"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
             android:layout_marginTop="16dp"
             android:layout_marginEnd="16dp"
-            app:cardCornerRadius="4dp"
-            app:cardElevation="4dp"
-            app:cardUseCompatPadding="false"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent">
@@ -43,7 +40,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:paddingHorizontal="16dp"
-                android:paddingTop="16dp">
+                android:paddingVertical="8dp">
 
                 <TextView
                     android:id="@+id/textView"
@@ -92,6 +89,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:background="@android:color/transparent"
+                    android:contentDescription="@string/collapse"
                     android:paddingHorizontal="16dp"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
@@ -110,25 +108,19 @@
                     app:layout_constraintTop_toBottomOf="@+id/divider"
                     tools:itemCount="4"
                     tools:listitem="@layout/item_calculator_result" />
-
-
             </androidx.constraintlayout.widget.ConstraintLayout>
         </androidx.cardview.widget.CardView>
 
         <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/etl_selling_price"
-            style="@style/ThemeOverlay.Material3.TextInputEditText.OutlinedBox"
+            android:id="@+id/et_container_price"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="16dp"
             android:layout_marginStart="16dp"
             android:layout_marginEnd="8dp"
-            android:layout_marginBottom="16dp"
+            android:layout_marginBottom="8dp"
             app:counterMaxLength="8"
             app:helperText="@string/required"
-            app:helperTextTextColor="@color/red"
-            app:hintEnabled="true"
-            app:hintTextColor="@color/white"
             app:layout_constraintBottom_toTopOf="@+id/btn_calculate"
             app:layout_constraintEnd_toStartOf="@+id/guideline3"
             app:layout_constraintStart_toStartOf="parent">
@@ -146,25 +138,19 @@
 
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/til_quantity"
-            style="@style/ThemeOverlay.Material3.TextInputEditText.OutlinedBox"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
             android:layout_marginEnd="16dp"
-            android:layout_marginBottom="16dp"
-            app:counterEnabled="true"
+            android:layout_marginBottom="8dp"
             app:counterMaxLength="3"
             app:helperText="@string/required"
-            app:helperTextEnabled="false"
-            app:helperTextTextColor="@color/red"
-            app:hintEnabled="true"
-            app:hintTextColor="@color/white"
             app:layout_constraintBottom_toTopOf="@+id/btn_calculate"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="@+id/guideline3">
 
             <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/tiet_quantity"
+                android:id="@+id/et_quantity"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="@string/quantity"
@@ -182,14 +168,9 @@
             android:layout_marginEnd="16dp"
             android:layout_marginBottom="16dp"
             android:onClick="@{() -> model.calculateBtnOnClick()}"
-            android:paddingVertical="8dp"
             android:text="@string/calculate"
-            android:textAllCaps="true"
-            android:textColor="@color/white"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent" />
-
-
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

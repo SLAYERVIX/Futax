@@ -44,7 +44,7 @@
                     android:text="@{simpleLogItem.date}"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/textView6"
-                    tools:text="0" />
+                    tools:text="December" />
 
 
                 <View

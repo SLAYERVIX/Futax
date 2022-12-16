@@ -13,5 +13,8 @@
         <!-- Status bar color. -->
         <item name="android:statusBarColor">@color/primaryColor</item>
         <!-- Customize your theme here. -->
+        <item name="cardViewStyle">@style/CardView.Default</item>
+        <item name="textInputStyle">@style/InputLayout</item>
+        <item name="materialButtonStyle">@style/DefaultButton</item>
     </style>
 </resources>

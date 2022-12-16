@@ -18,18 +18,18 @@ import com.example.futax.databinding.FragmentSimpleLogsBinding
 import com.example.futax.futax_application.ui.adapters.SimpleLogAdapter
 import kotlinx.coroutines.launch
 
-class SimpleLogsFragment : Fragment(),MenuProvider {
+class SimpleLogsFragment : Fragment(), MenuProvider {
 
-    private lateinit var binding : FragmentSimpleLogsBinding
-    private val viewModel : SimpleViewModel by activityViewModels()
+    private lateinit var binding: FragmentSimpleLogsBinding
+    private val viewModel: SimpleViewModel by activityViewModels()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
         binding = FragmentSimpleLogsBinding.inflate(inflater, container, false)
-        val menuHost : MenuHost = requireActivity()
-        menuHost.addMenuProvider(this,viewLifecycleOwner,Lifecycle.State.RESUMED)
+        val menuHost: MenuHost = requireActivity()
+        menuHost.addMenuProvider(this, viewLifecycleOwner, Lifecycle.State.RESUMED)
         return binding.root
     }
 
@@ -65,8 +65,7 @@ class SimpleLogsFragment : Fragment(),MenuProvider {
                         btnGridView.visibility = View.GONE
                         btnLinearView.visibility = View.GONE
                     }
-                }
-                else {
+                } else {
                     binding.apply {
                         textView2.visibility = View.GONE
                         btnGridView.visibility = View.VISIBLE
@@ -77,28 +76,30 @@ class SimpleLogsFragment : Fragment(),MenuProvider {
         }
 
         binding.btnGridView.setOnClickListener {
-            binding.rvSimpleLogs.layoutManager = GridLayoutManager(view.context,2)
+            adapter.isGrid = true
+            binding.rvSimpleLogs.layoutManager = GridLayoutManager(view.context, 2)
         }
 
         binding.btnLinearView.setOnClickListener {
+            adapter.isGrid = false
             binding.rvSimpleLogs.layoutManager = LinearLayoutManager(view.context)
         }
     }
 
     override fun onCreateMenu(menu: Menu, menuInflater: MenuInflater) {
-        menuInflater.inflate(R.menu.menu_simple_logs,menu)
+        menuInflater.inflate(R.menu.menu_simple_logs, menu)
     }
 
     override fun onMenuItemSelected(menuItem: MenuItem): Boolean {
-       return when (menuItem.itemId) {
+        return when (menuItem.itemId) {
             R.id.action_simple_logs_back -> {
                 findNavController().popBackStack()
                 true
             }
-           R.id.action_simple_logs_clear -> {
-               viewModel.clearSimpleLogs()
-               true
-           }
+            R.id.action_simple_logs_clear -> {
+                viewModel.clearSimpleLogs()
+                true
+            }
             else -> false
         }
     }

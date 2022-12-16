@@ -26,7 +26,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/btn_linear_view"
-        tools:listitem="@layout/item_simple_log" />
+        tools:listitem="@layout/item_simple_log_list" />
 
     <ImageButton
         android:id="@+id/btn_grid_view"
@@ -35,7 +35,8 @@
         android:layout_marginTop="8dp"
         android:src="@drawable/ic_baseline_grid_view_24"
         app:layout_constraintEnd_toStartOf="@+id/btn_linear_view"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        android:contentDescription="@string/grid_view" />
 
     <ImageButton
         android:id="@+id/btn_linear_view"
@@ -45,5 +46,6 @@
         android:layout_marginEnd="16dp"
         android:src="@drawable/ic_baseline_view_headline_24"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        android:contentDescription="@string/list_view" />
 </androidx.constraintlayout.widget.ConstraintLayout>

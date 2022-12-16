@@ -15,10 +15,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.futax.R
 import com.example.futax.databinding.FragmentComplexLogsBinding
-import com.example.futax.futax_application.data.local.models.ComplexLog
 import com.example.futax.futax_application.ui.adapters.ComplexLogAdapter
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
 
 class ComplexLogsFragment : Fragment(), MenuProvider {
@@ -82,10 +79,12 @@ class ComplexLogsFragment : Fragment(), MenuProvider {
         }
 
         binding.btnGridView.setOnClickListener {
+            adapter.isGrid = true
             binding.rvComplexLogs.layoutManager = GridLayoutManager(view.context, 2)
         }
 
         binding.btnLinearView.setOnClickListener {
+            adapter.isGrid = false
             binding.rvComplexLogs.layoutManager = LinearLayoutManager(view.context)
         }
     }
