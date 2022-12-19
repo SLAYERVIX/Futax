@@ -81,6 +81,7 @@ class SimpleViewModel @Inject constructor(private val localRepository: LocalRepo
         val simpleLog = SimpleLog(
             0,
             Date.date,
+            Date.time,
             sellingPrice.value,
             quantity.value,
             taxes.value,

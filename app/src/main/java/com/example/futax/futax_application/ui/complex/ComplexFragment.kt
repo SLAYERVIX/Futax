@@ -8,7 +8,6 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
-import androidx.navigation.Navigation
 import androidx.navigation.fragment.findNavController
 import com.example.futax.R
 import com.example.futax.databinding.FragmentComplexBinding
@@ -42,13 +41,11 @@ class ComplexFragment : Fragment(), MenuProvider {
             if (binding.rvComplex.visibility == View.GONE) {
                 binding.apply {
                     rvComplex.visibility = View.VISIBLE
-                    divider.visibility = View.VISIBLE
                     btnComplexExpand.setImageResource(R.drawable.ic_baseline_expand_less_24)
                 }
             } else {
                 binding.apply {
                     rvComplex.visibility = View.GONE
-                    divider.visibility = View.GONE
                     btnComplexExpand.setImageResource(R.drawable.ic_baseline_expand_more_24)
                 }
             }

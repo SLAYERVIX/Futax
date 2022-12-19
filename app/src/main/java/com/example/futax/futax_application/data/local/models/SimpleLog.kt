@@ -12,6 +12,9 @@ data class SimpleLog(
     @ColumnInfo(name = "date")
     val date: String,
 
+    @ColumnInfo(name = "time")
+    val time: String,
+
     @ColumnInfo(name = "selling_price")
     val sellingPrice: Int,
 

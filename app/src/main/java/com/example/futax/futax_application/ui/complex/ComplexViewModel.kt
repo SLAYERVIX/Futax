@@ -96,6 +96,7 @@ class ComplexViewModel @Inject constructor(private val localRepository: LocalRep
         val complexLog = ComplexLog(
             0,
             Date.date,
+            Date.time,
             buyPrice.value,
             sellingPrice.value,
             quantity.value,

@@ -1,6 +1,6 @@
 <resources>
     <!-- Base application theme. -->
-    <style name="Theme.Futax" parent="Theme.Material3.DayNight">
+    <style name="Theme.Futax" parent="Theme.Material3.Dark">
         <!-- Primary brand color. -->
         <item name="colorPrimary">@color/primaryColor</item>
         <item name="colorPrimaryVariant">@color/primaryDarkColor</item>
@@ -11,11 +11,15 @@
         <item name="colorSecondaryVariant">@color/secondaryDarkColor</item>
         <item name="android:textColorSecondary">@color/secondaryTextColor</item>
         <!-- Status bar color. -->
-        <item name="android:statusBarColor">@color/primaryColor</item>
-        <!-- Customize your theme here. -->
+        <item name="android:statusBarColor">@color/white</item>
+        <item name="android:windowLightStatusBar">true</item>
 
-        <item name="cardViewStyle">@style/CardView.Default</item>
-        <item name="textInputOutlinedStyle">@style/InputLayout</item>
+        <!-- Customize your theme here. -->
+        <item name="textInputStyle">@style/InputLayout</item>
         <item name="materialButtonStyle">@style/DefaultButton</item>
+        <item name="editTextStyle">@style/DefaultEditText</item>
+        <item name="android:editTextStyle">@style/DefaultEditText</item>
+        <item name="cardViewStyle">@style/DefaultCard</item>
+
     </style>
 </resources>

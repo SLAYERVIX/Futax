@@ -5,16 +5,24 @@
         <item name="colorPrimary">@color/primaryColor</item>
         <item name="colorPrimaryVariant">@color/primaryLightColor</item>
         <item name="android:textColorPrimary">@color/primaryTextColor</item>
+        <item name="colorAccent">@color/red</item>
 
         <!-- Secondary brand color. -->
         <item name="colorOnSecondary">@color/secondaryColor</item>
         <item name="colorSecondaryVariant">@color/secondaryLightColor</item>
         <item name="android:textColorSecondary">@color/secondaryTextColor</item>
+
         <!-- Status bar color. -->
-        <item name="android:statusBarColor">@color/primaryColor</item>
+        <item name="android:statusBarColor">@color/white</item>
+        <item name="android:windowLightStatusBar">true</item>
+
         <!-- Customize your theme here. -->
-        <item name="cardViewStyle">@style/CardView.Default</item>
         <item name="textInputStyle">@style/InputLayout</item>
         <item name="materialButtonStyle">@style/DefaultButton</item>
+        <item name="editTextStyle">@style/DefaultEditText</item>
+        <item name="cardViewStyle">@style/DefaultCard</item>
+        <item name="toolbarStyle">@style/MyToolbarStyle</item>
+        <item name="android:textColor">@color/white</item>
     </style>
+
 </resources>

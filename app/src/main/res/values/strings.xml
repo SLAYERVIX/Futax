@@ -10,7 +10,7 @@
     <string name="complex">Complex</string>
     <string name="buy_for">Buy For</string>
     <string name="sell_for">Sell For</string>
-    <!-- TODO: Remove or change this placeholder text -->
+
     <string name="profit">Profit</string>
     <string name="logs">Logs</string>
     <string name="clear">Clear</string>
@@ -21,4 +21,7 @@
     <string name="grid_view">Grid View</string>
     <string name="list_view">List View</string>
     <string name="collapse">collapse</string>
+    <string name="simple_logs">Simple Logs</string>
+    <string name="complex_logs">Complex Logs</string>
+    <string name="details">Details</string>
 </resources>

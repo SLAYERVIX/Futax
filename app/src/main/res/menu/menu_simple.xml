@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:android="http://schemas.android.com/apk/res/android">
-
     <item
         android:id="@+id/action_simple_reset"
         android:icon="@drawable/ic_baseline_cached_24"
@@ -12,5 +11,4 @@
         android:icon="@drawable/ic_baseline_assignment_24"
         android:title="@string/logs"
         app:showAsAction="ifRoom" />
-
 </menu>

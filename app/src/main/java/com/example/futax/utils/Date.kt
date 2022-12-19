@@ -5,5 +5,7 @@ import java.time.format.DateTimeFormatter
 
 object Date {
     @JvmStatic
-    val date: String = LocalDateTime.now().format(DateTimeFormatter.ofPattern("MMM, dd, yyyy | H : mm"))
+    val dateTime: String = LocalDateTime.now().format(DateTimeFormatter.ofPattern("MMM dd, yyyy | HH:mm"))
+    val date: String = LocalDateTime.now().format(DateTimeFormatter.ofPattern("MMM dd, yyyy"))
+    val time: String = LocalDateTime.now().format(DateTimeFormatter.ofPattern("HH:mm"))
 }

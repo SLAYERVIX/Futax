@@ -1,16 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="primaryColor">#131e40</color>
-    <color name="primaryLightColor">#3e456b</color>
-    <color name="primaryDarkColor">#00001b</color>
-    <color name="secondaryColor">#1f3a72</color>
-    <color name="secondaryLightColor">#5164a1</color>
-    <color name="secondaryDarkColor">#001546</color>
-    <color name="primaryTextColor">#ffffff</color>
-    <color name="secondaryTextColor">#ffffff</color>
+    <color name="primaryColor">#2962ff</color>
+    <color name="primaryLightColor">#768fff</color>
+    <color name="primaryDarkColor">#0039cb</color>
+    <color name="secondaryColor">#dd2c00</color>
+    <color name="secondaryLightColor">#ff6434</color>
+    <color name="secondaryDarkColor">#a30000</color>
+    <color name="primaryTextColor">#000000</color>
+    <color name="secondaryTextColor">#000000</color>
 
     <color name="white">#FFFFFF</color>
     <color name="red">#FF0000</color>
-
+    <color name="grey">#808080</color>
     <!-- Gradient -->
 </resources>

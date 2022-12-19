@@ -8,10 +8,7 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
-import androidx.navigation.Navigation
 import androidx.navigation.fragment.findNavController
-import androidx.recyclerview.widget.ItemTouchHelper
-import androidx.recyclerview.widget.RecyclerView
 import com.example.futax.R
 import com.example.futax.databinding.FragmentSimpleBinding
 import com.example.futax.futax_application.ui.adapters.SimpleAdapter
@@ -48,13 +45,11 @@ class SimpleFragment : Fragment(), MenuProvider {
             if (binding.rvSimple.visibility == View.GONE) {
                 binding.apply {
                     rvSimple.visibility = View.VISIBLE
-                    divider.visibility = View.VISIBLE
                     btnSimpleExpand.setImageResource(R.drawable.ic_baseline_expand_less_24)
                 }
             } else {
                 binding.apply {
                     rvSimple.visibility = View.GONE
-                    divider.visibility = View.GONE
                     btnSimpleExpand.setImageResource(R.drawable.ic_baseline_expand_more_24)
                 }
             }

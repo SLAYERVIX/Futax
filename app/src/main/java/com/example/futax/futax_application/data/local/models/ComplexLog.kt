@@ -12,6 +12,9 @@ data class ComplexLog(
     @ColumnInfo(name = "date")
     val date: String,
 
+    @ColumnInfo(name = "time")
+    val time: String,
+
     @ColumnInfo(name = "bought_price")
     val boughtPrice: Int,
 
