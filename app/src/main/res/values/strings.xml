@@ -24,4 +24,6 @@
     <string name="simple_logs">Simple Logs</string>
     <string name="complex_logs">Complex Logs</string>
     <string name="details">Details</string>
+    <string name="total">Total</string>
+    <string name="taxes">Taxes</string>
 </resources>

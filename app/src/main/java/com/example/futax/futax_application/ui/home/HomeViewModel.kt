@@ -1,6 +1,5 @@
 package com.example.futax.futax_application.ui.home
 
-import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.futax.futax_application.data.local.models.ComplexLog
@@ -21,18 +20,14 @@ class HomeViewModel @Inject constructor(private val localRepository: LocalReposi
     private val _complexLogSize : MutableStateFlow<Int> = MutableStateFlow(0)
     val complexLogSize : StateFlow<Int> = _complexLogSize
 
-
-
     init {
         getSimpleSize()
         getComplexSize()
-        Log.e("simple",_simpleLogSize.value.toString())
     }
 
     private fun getSimpleSize() = viewModelScope.launch {
         getSimpleLogs().collect {
             _simpleLogSize.emit(it.size)
-            Log.e("simple",simpleLogSize.value.toString())
         }
     }
 
@@ -42,6 +37,6 @@ class HomeViewModel @Inject constructor(private val localRepository: LocalReposi
         }
     }
 
-    fun getSimpleLogs(): Flow<List<SimpleLog>> = localRepository.getSimpleLogs()
-    fun getComplexLogs() : Flow<List<ComplexLog>> = localRepository.getComplexLogs()
+    private fun getSimpleLogs(): Flow<List<SimpleLog>> = localRepository.getSimpleLogs()
+    private fun getComplexLogs() : Flow<List<ComplexLog>> = localRepository.getComplexLogs()
 }

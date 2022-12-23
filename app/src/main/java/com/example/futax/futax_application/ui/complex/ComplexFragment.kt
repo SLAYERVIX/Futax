@@ -7,13 +7,9 @@ import androidx.core.view.MenuProvider
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.Lifecycle
-import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import com.example.futax.R
 import com.example.futax.databinding.FragmentComplexBinding
-import com.example.futax.futax_application.ui.adapters.ComplexAdapter
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.launch
 
 class ComplexFragment : Fragment(), MenuProvider {
 
@@ -35,31 +31,7 @@ class ComplexFragment : Fragment(), MenuProvider {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         binding.lifecycleOwner = this
-        binding.model = model
-
-        binding.btnComplexExpand.setOnClickListener {
-            if (binding.rvComplex.visibility == View.GONE) {
-                binding.apply {
-                    rvComplex.visibility = View.VISIBLE
-                    btnComplexExpand.setImageResource(R.drawable.ic_baseline_expand_less_24)
-                }
-            } else {
-                binding.apply {
-                    rvComplex.visibility = View.GONE
-                    btnComplexExpand.setImageResource(R.drawable.ic_baseline_expand_more_24)
-                }
-            }
-        }
-
-
-        val adapter = ComplexAdapter()
-        binding.rvComplex.adapter = adapter
-
-        lifecycleScope.launch(Dispatchers.Main) {
-            model.list.collect {
-                adapter.submitList(it)
-            }
-        }
+        binding.viewModel = model
     }
 
     override fun onCreateMenu(menu: Menu, menuInflater: MenuInflater) {

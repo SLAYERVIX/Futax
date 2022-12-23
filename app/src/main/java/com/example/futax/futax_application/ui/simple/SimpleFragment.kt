@@ -7,19 +7,16 @@ import androidx.core.view.MenuProvider
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Lifecycle
-import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import com.example.futax.R
 import com.example.futax.databinding.FragmentSimpleBinding
-import com.example.futax.futax_application.ui.adapters.SimpleAdapter
 import dagger.hilt.android.AndroidEntryPoint
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
+
 class SimpleFragment : Fragment(), MenuProvider {
     private lateinit var binding: FragmentSimpleBinding
-    private val model: SimpleViewModel by viewModels()
+    private val viewModel: SimpleViewModel by viewModels()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -36,30 +33,7 @@ class SimpleFragment : Fragment(), MenuProvider {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         binding.lifecycleOwner = this
-        binding.model = model
-
-        val adapter = SimpleAdapter()
-        binding.rvSimple.adapter = adapter
-
-        binding.btnSimpleExpand.setOnClickListener {
-            if (binding.rvSimple.visibility == View.GONE) {
-                binding.apply {
-                    rvSimple.visibility = View.VISIBLE
-                    btnSimpleExpand.setImageResource(R.drawable.ic_baseline_expand_less_24)
-                }
-            } else {
-                binding.apply {
-                    rvSimple.visibility = View.GONE
-                    btnSimpleExpand.setImageResource(R.drawable.ic_baseline_expand_more_24)
-                }
-            }
-        }
-
-        lifecycleScope.launch(Dispatchers.Main) {
-            model.list.collect {
-                adapter.submitList(it)
-            }
-        }
+        binding.viewModel = viewModel
     }
 
     override fun onCreateMenu(menu: Menu, menuInflater: MenuInflater) {
@@ -73,7 +47,7 @@ class SimpleFragment : Fragment(), MenuProvider {
                 true
             }
             R.id.action_simple_reset -> {
-                model.resetFields()
+                viewModel.resetFields()
                 true
             }
 

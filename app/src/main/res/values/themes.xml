@@ -22,7 +22,6 @@
         <item name="editTextStyle">@style/DefaultEditText</item>
         <item name="cardViewStyle">@style/DefaultCard</item>
         <item name="toolbarStyle">@style/MyToolbarStyle</item>
-        <item name="android:textColor">@color/white</item>
     </style>
 
 </resources>

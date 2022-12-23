@@ -15,6 +15,7 @@
 
     <style name="DefaultEditText" parent="Widget.Material3.TextInputEditText.OutlinedBox">
         <item name="android:drawablePadding">8dp</item>
+        <item name="android:inputType">number</item>
         <item name="drawableTint">@color/primaryColor</item>
     </style>
 

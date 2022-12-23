@@ -16,6 +16,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.futax.R
 import com.example.futax.databinding.FragmentSimpleLogsBinding
 import com.example.futax.futax_application.ui.adapters.SimpleLogAdapter
+import com.google.android.material.snackbar.Snackbar
 import kotlinx.coroutines.launch
 
 class SimpleLogsFragment : Fragment(), MenuProvider {
@@ -28,16 +29,28 @@ class SimpleLogsFragment : Fragment(), MenuProvider {
         savedInstanceState: Bundle?
     ): View {
         binding = FragmentSimpleLogsBinding.inflate(inflater, container, false)
+
         val menuHost: MenuHost = requireActivity()
         menuHost.addMenuProvider(this, viewLifecycleOwner, Lifecycle.State.RESUMED)
+
         return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        binding.viewModel = viewModel
+        binding.lifecycleOwner = this
+
 
         val adapter = SimpleLogAdapter()
         binding.rvSimpleLogs.adapter = adapter
+
+        lifecycleScope.launch {
+            viewModel.getSimpleLogs().collect {
+                adapter.submitList(it)
+                viewModel.isLogSetter(it.isEmpty())
+            }
+        }
 
         ItemTouchHelper(object : ItemTouchHelper.SimpleCallback(0, ItemTouchHelper.LEFT) {
             override fun onMove(
@@ -50,39 +63,27 @@ class SimpleLogsFragment : Fragment(), MenuProvider {
 
             override fun onSwiped(viewHolder: RecyclerView.ViewHolder, direction: Int) {
                 lifecycleScope.launch {
-                    viewModel.deleteSimpleLog(adapter.currentList[viewHolder.adapterPosition])
+                    val log = adapter.currentList[viewHolder.adapterPosition]
+                    viewModel.deleteSimpleLog(log)
+
+                    Snackbar.make(view, "Log Deleted", Snackbar.LENGTH_LONG)
+                        .setAction("Undo") {
+                            viewModel.insertSimpleLog(log)
+                        }.show()
                 }
             }
-
         }).attachToRecyclerView(binding.rvSimpleLogs)
 
-        lifecycleScope.launch {
-            viewModel.getSimpleLogs().collect {
-                adapter.submitList(it)
-                if (it.isEmpty()) {
-                    binding.apply {
-                        textView2.visibility = View.VISIBLE
-                        btnGridView.visibility = View.GONE
-                        btnLinearView.visibility = View.GONE
-                    }
-                } else {
-                    binding.apply {
-                        textView2.visibility = View.GONE
-                        btnGridView.visibility = View.VISIBLE
-                        btnLinearView.visibility = View.VISIBLE
-                    }
-                }
+        binding.apply {
+            btnGridView.setOnClickListener {
+                adapter.isGrid = true
+                binding.rvSimpleLogs.layoutManager = GridLayoutManager(view.context, 2)
             }
-        }
 
-        binding.btnGridView.setOnClickListener {
-            adapter.isGrid = true
-            binding.rvSimpleLogs.layoutManager = GridLayoutManager(view.context, 2)
-        }
-
-        binding.btnLinearView.setOnClickListener {
-            adapter.isGrid = false
-            binding.rvSimpleLogs.layoutManager = LinearLayoutManager(view.context)
+            btnLinearView.setOnClickListener {
+                adapter.isGrid = false
+                binding.rvSimpleLogs.layoutManager = LinearLayoutManager(view.context)
+            }
         }
     }
 
@@ -103,4 +104,21 @@ class SimpleLogsFragment : Fragment(), MenuProvider {
             else -> false
         }
     }
+
+//    fun deleteItem(simpleLog: SimpleLog) {
+//        val builder = AlertDialog.Builder(requireContext())
+//        builder.setTitle("Delete Log")
+//        builder.setMessage("Are you sure you want to delete this log ?")
+//
+//        builder.setPositiveButton("Delete") { dialog, _ ->
+//            viewModel.deleteSimpleLog(simpleLog)
+//            dialog.cancel()
+//        }
+//
+//        builder.setNegativeButton("Cancel") { dialog, _ ->
+//            dialog.cancel()
+//        }
+//        // Create the AlertDialog
+//        builder.create().show()
+//    }
 }

@@ -3,7 +3,6 @@ package com.example.futax.futax_application.ui.complex
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.futax.futax_application.data.local.models.ComplexLog
-import com.example.futax.futax_application.domain.models.CalculatorItem
 import com.example.futax.futax_application.domain.repository.LocalRepository
 import com.example.futax.utils.Date
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -23,49 +22,52 @@ class ComplexViewModel @Inject constructor(private val localRepository: LocalRep
 
     val quantity: MutableStateFlow<Int> = MutableStateFlow(1)
 
-    private val taxes: MutableStateFlow<Int> = MutableStateFlow(0)
+    private val _taxes: MutableStateFlow<Int> = MutableStateFlow(0)
+    val taxes: StateFlow<Int> = _taxes
 
-    private val total: MutableStateFlow<Int> = MutableStateFlow(0)
+    private val _total: MutableStateFlow<Int> = MutableStateFlow(0)
+    val total: StateFlow<Int> = _total
 
-    private val profit: MutableStateFlow<Int> = MutableStateFlow(0)
+    private val _profit: MutableStateFlow<Int> = MutableStateFlow(0)
+    val profit: StateFlow<Int> = _profit
 
     private val _earning: MutableStateFlow<Int> = MutableStateFlow(0)
     val earning: StateFlow<Int> = _earning
 
-    private var _list: MutableStateFlow<List<CalculatorItem>> = MutableStateFlow(setupList())
-    val list: StateFlow<List<CalculatorItem>> = _list
+    private val _isDetailsVisible: MutableStateFlow<Boolean> = MutableStateFlow(false)
+    val isDetailsVisible: StateFlow<Boolean> = _isDetailsVisible
 
-    val logsList: Flow<List<ComplexLog>> = getComplexLogs()
+    private val _isLogsEmpty: MutableStateFlow<Boolean> = MutableStateFlow(false)
+    val isLogsEmpty: StateFlow<Boolean> = _isLogsEmpty
 
+    fun setVisibility() = viewModelScope.launch {
+        _isDetailsVisible.emit(_isDetailsVisible.value.not())
+    }
 
-    private fun setupList(): MutableList<CalculatorItem> {
-        return mutableListOf(
-            CalculatorItem("Total:", total.value),
-            CalculatorItem("Taxes:", taxes.value),
-            CalculatorItem("Profit:", profit.value)
-        )
+    suspend fun isLogSetter(state : Boolean) {
+        _isLogsEmpty.emit(state)
     }
 
     private suspend inline fun calculateTotal() {
-        total.emit(
+        _total.emit(
             sellingPrice.value * quantity.value
         )
     }
 
     private suspend inline fun calculateTaxes() {
-        taxes.emit(
-            (total.value * 0.05).toInt()
+        _taxes.emit(
+            (_total.value * 0.05).toInt()
         )
     }
 
     private suspend inline fun calculateEarning() {
         _earning.emit(
-            total.value - taxes.value
+            _total.value - _taxes.value
         )
     }
 
     private suspend inline fun calculateProfit() {
-        profit.emit(
+        _profit.emit(
             _earning.value - buyPrice.value
         )
     }
@@ -75,36 +77,36 @@ class ComplexViewModel @Inject constructor(private val localRepository: LocalRep
         calculateTaxes()
         calculateEarning()
         calculateProfit()
-        _list.emit(setupList())
-        insertComplexLog()
+
+        insertComplexLog(
+            ComplexLog(
+                0,
+                Date.date,
+                Date.time,
+                buyPrice.value,
+                sellingPrice.value,
+                quantity.value,
+                _taxes.value,
+                _total.value,
+                earning.value,
+                _profit.value
+            )
+        )
     }
 
     fun resetFields() = viewModelScope.launch {
         buyPrice.emit(0)
         sellingPrice.emit(0)
         quantity.emit(1)
-        taxes.emit(0)
-        profit.emit(0)
-        total.emit(0)
+        _taxes.emit(0)
+        _profit.emit(0)
+        _total.emit(0)
         _earning.emit(0)
-        _list.emit(setupList())
     }
 
     fun getComplexLogs(): Flow<List<ComplexLog>> = localRepository.getComplexLogs()
 
-    private fun insertComplexLog() = viewModelScope.launch(Dispatchers.IO) {
-        val complexLog = ComplexLog(
-            0,
-            Date.date,
-            Date.time,
-            buyPrice.value,
-            sellingPrice.value,
-            quantity.value,
-            taxes.value,
-            total.value,
-            earning.value,
-            profit.value
-        )
+    fun insertComplexLog(complexLog: ComplexLog) = viewModelScope.launch(Dispatchers.IO) {
         localRepository.insertComplexLog(complexLog)
     }
 

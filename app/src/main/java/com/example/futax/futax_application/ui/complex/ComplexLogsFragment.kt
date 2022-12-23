@@ -16,6 +16,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.futax.R
 import com.example.futax.databinding.FragmentComplexLogsBinding
 import com.example.futax.futax_application.ui.adapters.ComplexLogAdapter
+import com.google.android.material.snackbar.Snackbar
 import kotlinx.coroutines.launch
 
 class ComplexLogsFragment : Fragment(), MenuProvider {
@@ -38,6 +39,9 @@ class ComplexLogsFragment : Fragment(), MenuProvider {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        binding.viewModel = viewModel
+        binding.lifecycleOwner = this
+
         val adapter = ComplexLogAdapter()
         binding.rvComplexLogs.adapter = adapter
 
@@ -52,29 +56,21 @@ class ComplexLogsFragment : Fragment(), MenuProvider {
 
             override fun onSwiped(viewHolder: RecyclerView.ViewHolder, direction: Int) {
                 lifecycleScope.launch {
-                    viewModel.deleteComplexLog(adapter.currentList[viewHolder.adapterPosition])
-                }
-            }
+                    val log = adapter.currentList[viewHolder.adapterPosition]
+                    viewModel.deleteComplexLog(log)
 
+                    Snackbar.make(view, "Log Deleted", Snackbar.LENGTH_LONG)
+                        .setAction("Undo") {
+                            viewModel.insertComplexLog(log)
+                        }.show() }
+            }
         }).attachToRecyclerView(binding.rvComplexLogs)
 
         lifecycleScope.launch {
             viewModel.getComplexLogs().collect {
                 adapter.submitList(it)
+                viewModel.isLogSetter(it.isEmpty())
 
-                if (it.isEmpty()) {
-                    binding.apply {
-                        textView2.visibility = View.VISIBLE
-                        btnGridView.visibility = View.GONE
-                        btnLinearView.visibility = View.GONE
-                    }
-                } else {
-                    binding.apply {
-                        textView2.visibility = View.GONE
-                        btnGridView.visibility = View.VISIBLE
-                        btnLinearView.visibility = View.VISIBLE
-                    }
-                }
             }
         }
 
